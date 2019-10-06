@@ -2,6 +2,10 @@ extends layout
 
 block content
  h1= title
+ p
+  | 이름을 입력하세여!! : 
+  input#username(type='text', value= username)
+  button.btn.btn-primary.btn-sm#submit-name 이름저장
  p 
   font(color='DodgerBlue') #{username}
   | 님 환영합니다.
@@ -43,5 +47,5 @@ block content
    #user
     #list
     #logs
-    input#start_button(type='button', value='게임 시작!!')
-    input#username(type='hidden', value= username)
+    button.btn.btn-warning.btn-sm#start_button 게임 시작!!
+    //input#username(type='hidden', value= username)

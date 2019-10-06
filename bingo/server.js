@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 var users = {};
 var user_count = 0;
 var turn_count = 0;
+var isGameOver = false;
 
 
 io.on('connection', function(socket){ 
@@ -36,14 +37,16 @@ io.on('connection', function(socket){
 		users[user_count].turn = false;
 		user_count++;
 		
-		io.emit('update_users', users, user_count);
+		io.emit('update_users', users, user_count, isGameOver);
+		console.log(users);
+		
 	});
 	
 	socket.on('game_start', function (data) {
 		socket.broadcast.emit("game_started", data);
 		users[turn_count].turn = true;
 		
-		io.emit('update_users', users);
+		io.emit('update_users', users, isGameOver);
 	});
 	
 	socket.on('select', function (data) {
@@ -57,7 +60,7 @@ io.on('connection', function(socket){
 		}
 		users[turn_count].turn = true;
 		
-		io.sockets.emit('update_users', users);
+		io.sockets.emit('update_users', users, isGameOver);
 	});
 	
 	socket.on('disconnect', function() {
@@ -69,8 +72,10 @@ io.on('connection', function(socket){
 		}
 		
 		user_count--;
-		io.emit('update_users', users, user_count);
+		isGameOver = true;
+		io.emit('update_users', users, user_count, isGameOver);
 	});
+
 });
 
 http.listen(3111, function(){ 

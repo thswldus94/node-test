@@ -60,3 +60,8 @@ a {
 	border-right: 1px solid gray;
 	border-bottom: 1px solid gray;
 }
+
+#username { 
+	width: 150px;
+	height: 30px;
+}
