@@ -6,7 +6,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // DB Connection
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb+srv://thswldus94:qoWlfkdlej94@cluster0-xavuc.mongodb.net/sns?retryWrites=true&w=majority', { useNewUrlParser: true });
+var db = mongoose.connect('mongo url', { useNewUrlParser: true });
 var Schema = mongoose.Schema;
 
 var Post = new Schema({
